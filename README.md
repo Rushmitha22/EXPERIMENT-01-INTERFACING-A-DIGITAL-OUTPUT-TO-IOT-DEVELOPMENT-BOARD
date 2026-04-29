@@ -1,25 +1,25 @@
-# EXPERIMENT-01-INTERFACING-A-DIGITAL-OUTPUT-TO-IOT-DEVELOPMENT-BOARD
+# EXPERIMENT-01 : INTERFACING A DIGITAL OUTPUT TO IOT DEVELOPMENT BOARD
 
 
-**DATE:**
 
-**NAME:**
 
-**ROLL NO:**
+## NAME: RUSHMITHA  R
 
-**DEPARTMENT:**
+## REGISTRATION NUMBER : 212224040281
 
-## Aim
+## DEPARTMENT: B.E. COMPUTER SCIENCE AND ENGINEERING
+
+## AIM :
 
 To Interface a Digital output (LED) to ARM IOT development board and write a program to blink an LED.
 
-## Components required
+## COMPONENTS REQUIRED:
 
 - STM32 CUBE IDE
 - ARM IOT development board
 - STM programmer tool
 
-## Theory
+## Theory :
 
 The ARM (Advanced RISC Machine) architecture is widely used in microcontrollers and processors due to its efficiency, low power consumption, and high performance. ARM processors follow the Reduced Instruction Set Computing (RISC) design, making them ideal for embedded systems, mobile devices, and IoT applications. Many well-known semiconductor companies, including STMicroelectronics, use ARM-based architectures to develop powerful and energy-efficient microcontrollers.
 
@@ -29,7 +29,7 @@ The STM32WLE5JC is known for its ultra-low power consumption, making it perfect 
 
 With its power-efficient design, built-in LoRaWAN support, and flexible communication options, the STM32WLE5JC is an excellent choice for developers looking to build long-range, low-power IoT applications. It is fully compatible with STM32CubeIDE and LoRaWAN middleware, making development and deployment easier for engineers and learners alike.
 
-## Procedure
+## Procedure :
 
 1. Click on STM 32 CUBE IDE, the following screen will appear
    
@@ -99,10 +99,78 @@ With its power-efficient design, built-in LoRaWAN support, and flexible communic
 ## STM 32 CUBE PROGRAM
 
 ```
-// Your STM 32 CUBE Program code here
+#include "main.h"
+
+void SystemClock_Config(void);
+static void MX_GPIO_Init(void);
+
+int main(void)
+{
+  HAL_Init();
+  SystemClock_Config();
+  MX_GPIO_Init();
+
+  while (1)
+  {
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, GPIO_PIN_SET);
+    HAL_Delay(4000);
+
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, GPIO_PIN_RESET);
+    HAL_Delay(4000);
+  }
+}
+
+void SystemClock_Config(void)
+{
+  RCC_OscInitTypeDef RCC_OscInitStruct = {0};
+  RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+
+  __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE2);
+
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_MSI;
+  RCC_OscInitStruct.MSIState = RCC_MSI_ON;
+  RCC_OscInitStruct.MSIClockRange = RCC_MSIRANGE_6;
+  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
+
+  HAL_RCC_OscConfig(&RCC_OscInitStruct);
+
+  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK |
+                               RCC_CLOCKTYPE_SYSCLK |
+                               RCC_CLOCKTYPE_PCLK1 |
+                               RCC_CLOCKTYPE_PCLK2;
+
+  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_MSI;
+  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
+  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+
+  HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0);
+}
+
+static void MX_GPIO_Init(void)
+{
+  GPIO_InitTypeDef GPIO_InitStruct = {0};
+
+  __HAL_RCC_GPIOA_CLK_ENABLE();
+
+  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, GPIO_PIN_RESET);
+
+  GPIO_InitStruct.Pin = GPIO_PIN_0;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+}
 ```
 
-## OUTPUT
+## OUTPUT :
+### OFF STATE :
+<img width="948" height="1280" alt="WhatsApp Image 2026-04-29 at 9 14 20 AM" src="https://github.com/user-attachments/assets/ede823ad-d117-4f4d-838f-3f7f75f0d3eb" />
+
+### ON STATE :
+<img width="976" height="1280" alt="WhatsApp Image 2026-04-29 at 9 15 01 AM" src="https://github.com/user-attachments/assets/2a75677e-7418-48ec-857a-ee909caff48d" />
+
 
 ## Result
 
