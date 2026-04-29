@@ -166,10 +166,12 @@ static void MX_GPIO_Init(void)
 
 ## OUTPUT :
 ### OFF STATE :
-<img width="948" height="1280" alt="WhatsApp Image 2026-04-29 at 9 14 20 AM" src="https://github.com/user-attachments/assets/ede823ad-d117-4f4d-838f-3f7f75f0d3eb" />
+<img width="1280" height="948" alt="WhatsApp Image 2026-04-29 at 9 14 20 AM (1)" src="https://github.com/user-attachments/assets/1dca6edd-adf4-4fd3-aca2-73d163d7f364" />
+
 
 ### ON STATE :
-<img width="976" height="1280" alt="WhatsApp Image 2026-04-29 at 9 15 01 AM" src="https://github.com/user-attachments/assets/2a75677e-7418-48ec-857a-ee909caff48d" />
+<img width="1280" height="976" alt="WhatsApp Image 2026-04-29 at 9 15 01 AM" src="https://github.com/user-attachments/assets/40dfffda-d22c-48b1-88b3-e6dc31e42632" />
+
 
 
 ## Result
